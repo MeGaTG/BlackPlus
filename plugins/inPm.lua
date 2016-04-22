@@ -208,7 +208,7 @@ if to == 'user' or service or is_admin1(msg) and to == "chat" or to == "channel"
 
 	if matches[1] == 'help' and msg.to.type == 'user' or matches[1] == 'pmhelp' and is_admin1(msg) and msg.to.type ~= 'user' then
       	savelog(msg.to.id, name_log.." ["..msg.from.id.."] used pm help")
-		text = "Welcome to BlackPlus!\n\n>To get a new BlackPlus group, contact a support group:\n https://telegram.me/joinchat/A2ETvD160xvoj4y_pNAgig\n\nFor more information, check out our channels:\n\n@Black_CH \n\nUse #superhelp command to show bot commands!!\n\n#Thanks_for_using @BlackPlus!"
+		text = "Welcome to OffLiNe!\n\n>To get a new group, contact a support (@this_is_amir,@this_is_amirbot)\n\nFor more information, check out our channels:\n\n@OffLiNeTeam \n\nUse #superhelp command to show bot commands!!\n\n#Thanks_for_use OffLiNe!"
      	return text
     end
 
