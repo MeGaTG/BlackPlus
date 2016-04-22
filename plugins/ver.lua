@@ -1,21 +1,25 @@
 do
 
 function run(msg, matches)
-  return [[ B L A C K +
------------------------------------
+  return [[ TELE 🔶PHOENIX🔶
+=================================
 A new bot for manage your Supergroups.
------------------------------------
-@Black_CH #Channel
------------------------------------
-@MehdiHS #Developer
------------------------------------
-@YflQw #Manager
------------------------------------
-@Mr_Surena #Manager
------------------------------------
-Bot number : +19092545429
------------------------------------
-Bot version : 6.7 ]]
+
+=================================
+
+ #Developer : @Tis_Is_Amir(Amir)
+
+=================================
+
+#Manager : @ALIREZASOLTANI1376(Ali)
+
+================================
+
+Thanks To :
+Mehsi-HS
+ShahabDark
+================================
+Bot version : 1.2 ]]
 end
 
 return {
@@ -23,6 +27,7 @@ return {
   usage = "version: Shows bot version",
   patterns = {
     "^[#!/]version$"
+    "^[#!/]PHOENIX$"
   }, 
   run = run 
 }
