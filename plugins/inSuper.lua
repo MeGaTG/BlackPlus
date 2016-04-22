@@ -1,4 +1,4 @@
---Begin supergrpup.lua
+﻿--Begin supergrpup.lua
 --Check members #Add supergroup
 local function check_member_super(cb_extra, success, result)
   local receiver = cb_extra.receiver
@@ -556,7 +556,6 @@ end
 	end
   local settings = data[tostring(target)]['settings']
   local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
-
   return text
 end
 
