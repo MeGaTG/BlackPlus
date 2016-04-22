@@ -1,4 +1,4 @@
-﻿--Begin supergrpup.lua
+--Begin supergrpup.lua
 --Check members #Add supergroup
 local function check_member_super(cb_extra, success, result)
   local receiver = cb_extra.receiver
@@ -555,7 +555,8 @@ end
 		end
 	end
   local settings = data[tostring(target)]['settings']
-  local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
+  local text = "⚙SuperGroup settings:\n==========================\n#Lock Links > "..settings.lock_link.."\n\n#Lock Flood > "..settings.flood.."\n\n#Flood sensitivity > "..NUM_MSG_MAX.."\n\n#Lock Spam > "..settings.lock_spam.."\n\n#Lock Arabic/Persian > "..settings.lock_arabic.."\n\n#Lock Member > "..settings.lock_member.."\n\n#Lock RTL > "..settings.lock_rtl.."\n\n#Lock TGservice > "..settings.lock_tgservice.."\n\n#Lock Sticker > "..settings.lock_sticker.."\n\n#Public > "..settings.public.."\n\n#Strict Settings > "..settings.strict\n\n==========================\n🔶PHOENIX Team🔶
+
   return text
 end
 
