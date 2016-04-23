@@ -1,6 +1,7 @@
 ﻿--Begin supergrpup.lua
 --Check members #Add supergroup
-local function check_member_super(cb_extra, sr = cb_extra.receiver
+local function check_member_super(cb_extra, success, result)
+  local receiver = cb_extra.receiver
   local data = cb_extra.data
   local msg = cb_extra.msg
   if success == 0 then
