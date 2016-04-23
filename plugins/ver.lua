@@ -27,7 +27,6 @@ return {
   usage = "version: Shows bot version",
   patterns = {
     "^[#!/]version$"
-    "^[#!/]PHOENIX$"
   }, 
   run = run 
 }
