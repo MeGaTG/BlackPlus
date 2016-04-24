@@ -247,6 +247,7 @@ function create_config( )
     "toVoice",
     "ver",
     "tosuper",
+    "plugins",
     "start",
     "whitelist",
     "plist",
@@ -483,6 +484,8 @@ Deletes a message by reply
 Set chat visibility in pm !chats or !chatlist commands
 #res [username]
 Returns users name and id by username
+#helps
+Returns help commands in html file
 #log
 Returns group logs
 *Search for kick reasons using [#RTL|#spam|#lockmember]
@@ -501,9 +504,7 @@ other commands :
 **You can use "#", "!", or "/" to begin all commands
 *Only owner can add members to SuperGroup
 (use invite link to invite)
-*Only moderators and owner can use block, ban, unban, newlink, link, setphoto, setname, lock, unlock, setrules, setabout and settings commands
-*Only owner can use res, setowner, promote, demote, and log commands
-Channel : @black_ch
+
 ]],
   }
   serialize_to_file(config, './data/config.lua')
