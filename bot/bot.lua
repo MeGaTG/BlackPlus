@@ -210,7 +210,12 @@ end
 -- Create a basic config.json file and saves it.
 function create_config( )
   -- A simple config with basic plugins and ourselves as privileged user
-  config = {
+  config = {    
+    bot_api = {
+      key = bot_api_key,
+      uid = tonumber(bot_api_uid),
+      uname = bot_api_uname
+    },
     enabled_plugins = {
     "plugins",
     "antiSpam",
