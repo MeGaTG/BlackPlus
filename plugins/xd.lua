@@ -556,7 +556,7 @@ end
 	end
   local settings = data[tostring(target)]['settings']
   local text = "SuperGroup settings:\n\nLock Links > "..settings.lock_link.."\nLock Flood > "..settings.flood.."\nFlood sensitivity > "..NUM_MSG_MAX.."\nLock Spam > "..settings.lock_spam.."\nLock Arabic/Persian > "..settings.lock_arabic.."\nLock Member > "..settings.lock_member.."\nLock RTL > "..settings.lock_rtl.."\nLock TGservice > "..settings.lock_tgservice.."\nLock Sticker > "..settings.lock_sticker.."\nPublic > "..settings.public.."\nStrict Settings > "..settings.strict
-  return text
+  send_api_msg(msg, get_receiver_api(msg), text, true, 'md')
 end
 
 local function promote_admin(receiver, member_username, user_id)
