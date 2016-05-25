@@ -10,9 +10,7 @@ usage = {
 "!markdown _text_ : text to italic",
 },
 patterns = {
-"^[!/]markdown (.*)",
-"^[!/]hyper (.*)",
-"^[!/]mk (.*)",
+"^[!/]md (.*)",
 },
 run = run 
 }
