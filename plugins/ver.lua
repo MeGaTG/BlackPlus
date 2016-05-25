@@ -6,8 +6,7 @@ function run(msg, matches)
 *Version: 1.1*
   
 _more information send 
-!OffliNeTG 
-to chat_
+!OffLiNeTG 
 [#Dev](http://telegram.me/this_Is_Amir)
 [Join Us :D](http://telegram.me/OffliNeTeam)
 *TNX to all*]]
