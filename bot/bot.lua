@@ -209,14 +209,12 @@ end
 
 -- Create a basic config.json file and saves it.
 function create_config( )
-  print('\n\27[1;33mSome functions and plugins using bot API as sender.\n'
-      ..'Please provide bots API token and username to ensure it\'s works as intended.\n'
-      ..'You can ENTER to skip and then fill the required info into data/config.lua.\27[0;39;49m\n')
+  print('برای بعضی از پیامها ما احتیاج به توکن داریم لطفا توکن را وارد کنید')
 
   io.write('\27[1mPlease input your bot API key (token): \27[0;39;49m')
   local bot_api_key = io.read()
 
-  io.write('\n\27[1mPlease input your bot API @username: \27[0;39;49m')
+  io.write('لطفا یوزرنیم ربات را وارد کنید ')
   local bot_api_uname = io.read()
   local bot_api_uname = bot_api_uname:gsub('@', '')
   local bot_api_uid = bot_api_key:match('^%d+')
