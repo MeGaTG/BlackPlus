@@ -11,6 +11,4 @@ patterns = {
 "^[!/#]([Ii][Dd])$",
 "^[Ii][Dd]$",
 },
-run = run
-}
-????
+ run = run }
