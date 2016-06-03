@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
-#set -euo
-
-THIS_DIR=$(cd "$(dirname "$0")"; pwd)
-cd "$THIS_DIR"
+THIS_DIR=$(cd $(dirname $0); pwd)
+cd $THIS_DIR
 
 update() {
   git pull
@@ -15,23 +13,19 @@ update() {
 install_luarocks() {
   git clone https://github.com/keplerproject/luarocks.git
   cd luarocks
-  git checkout tags/v2.3.0 # Current stable
+  git checkout tags/v2.3.0-rc2 # Release Candidate
 
   PREFIX="$THIS_DIR/.luarocks"
 
-  ./configure --prefix="$PREFIX" --sysconfdir="$PREFIX"/luarocks --force-config
+  ./configure --prefix=$PREFIX --sysconfdir=$PREFIX/luarocks --force-config
 
-  RET=$?
-  if [ $RET -ne 0 ]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' 'Error. Exiting.'
-    exit $RET
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
   fi
 
   make build && make install
-  RET=$?
-  if [ $RET -ne 0 ]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' 'Error. Exiting.'
-    exit $RET
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting.";exit $RET;
   fi
 
   cd ..
@@ -39,60 +33,66 @@ install_luarocks() {
 }
 
 install_rocks() {
-  ./.luarocks/bin/luarocks install lbase64 20120807-3
-  RET=$?
-  if [ $RET -ne 0 ]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' 'Error. Exiting.'
-  exit $RET
+  ./.luarocks/bin/luarocks install luasec
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
   fi
-  for i in luasec luasocket oauth redis-lua lua-cjson fakeredis xml feedparser serpent; do
-    ./.luarocks/bin/luarocks install "$i"
-    RET=$?
-    if [ $RET -ne 0 ]; then
-      printf '\e[1;31m%s\n\e[0;39;49m' 'Error. Exiting.'
-      exit $RET
-    fi
-  done
-}
 
-merbot_upstart() {
-  printf '%s\n' "
-description 'Merbots upstart script.'
-respawn
-respawn limit 15 5
-start on runlevel [2345]
-stop on shutdown
-setuid $(whoami)
-exec /bin/sh $(pwd)/merbot
-" | sudo tee /etc/init/merbot.conf > /dev/null
+  ./.luarocks/bin/luarocks install lbase64 20120807-3
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
 
-  [[ -f /etc/init/merbot.conf ]] && printf '%s\n' '
-  Upstart script installed to /etc/init/merbot.conf.
-  Now you can:
-  Start merbot with     : sudo start merbot
-  See merbot status with: sudo status merbot
-  Stop merbot with      : sudo stop merbot
-'
-}
+  ./.luarocks/bin/luarocks install luafilesystem
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
 
-tgcli_config() {
-  mkdir -p "$THIS_DIR"/.telegram-cli
-  printf '%s\n' "
-default_profile = \"default\";
-default = {
-  config_directory = \"$THIS_DIR/.telegram-cli\";
-  auth_file = \"$THIS_DIR/.telegram-cli/auth\";
-  test = false;
-  msg_num = true;
-  log_level = 2;
-};
-" > "$THIS_DIR"/data/tg-cli.config
+  ./.luarocks/bin/luarocks install lub
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install luaexpat
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install redis-lua
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install lua-cjson
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install fakeredis
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install xml
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install feedparser
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
+
+  ./.luarocks/bin/luarocks install serpent
+  RET=$?; if [ $RET -ne 0 ];
+    then echo "Error. Exiting."; exit $RET;
+  fi
 }
 
 install() {
   git pull
   git submodule update --init --recursive
-  patch -i 'patches/merbot.patch' -p 0 --batch --forward
+  patch -i "patches/disable-python-and-libjansson.patch" -p 0 --batch --forward
   RET=$?;
 
   cd tg
@@ -101,33 +101,39 @@ install() {
   fi
   ./configure && make
 
-  RET=$?
-  if [ $RET -ne 0 ]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' 'Error. Exiting.'
-    exit $RET
+  RET=$?; if [ $RET -ne 0 ]; then
+    echo "Error. Exiting."; exit $RET;
   fi
   cd ..
   install_luarocks
   install_rocks
-  tgcli_config
 }
 
-if [[ "$1" = "install" ]]; then
+if [ "$1" = "install" ]; then
   install
-elif [[ "$1" = "update" ]]; then
+elif [ "$1" = "update" ]; then
   update
-elif [[ "$1" = "upstart" ]]; then
-  merbot_upstart
 else
-  if [[ ! -f ./tg/telegram.h ]]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' '  tg not found' "  Run $0 install"
+  if [ ! -f ./tg/telegram.h ]; then
+    echo "tg not found"
+    echo "Run $0 install"
     exit 1
   fi
 
-  if [[ ! -f ./tg/bin/telegram-cli ]]; then
-    printf '\e[1;31m%s\n\e[0;39;49m' '  tg binary not found' "  Run $0 install"
+  if [ ! -f ./tg/bin/telegram-cli ]; then
+    echo "tg binary not found"
+    echo "Run $0 install"
     exit 1
   fi
-
-  ./tg/bin/telegram-cli -k ./tg/tg-server-pub --disable-link-preview -s ./bot/bot.lua -l 1 -E -c ./data/tg-cli.config -p default "$@"
+  
+  chmod 777 xd.sh
+  
+  #Adding some color. By @MehdiHS
+   echo -e "\033[38;5;208m"
+   echo -e "     > Channel :    @OffLiNeTeam                    "
+   echo -e "     > Developer : @This_Is_Amir                    "
+   echo -e "     > Bot ID :    @OffLiNeTG                       "
+   echo -e "                                              \033[0;00m"
+   echo -e "\e[36m"
+  ./tg/bin/telegram-cli -k ./tg/tg-server.pub -s ./bot/bot.lua -l 1 -E $@
 fi
