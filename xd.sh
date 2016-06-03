@@ -128,7 +128,7 @@ else
   
   chmod 777 xd.sh
   
-  #Adding some color. By @MehdiHS
+
    echo -e "\033[38;5;208m"
    echo -e "     > Channel :    @OffLiNeTeam                    "
    echo -e "     > Developer : @This_Is_Amir                    "
