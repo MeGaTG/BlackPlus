@@ -1,5 +1,5 @@
 do
---create by RoyalTeam ID CHANNEL : @RoyalTeamCh
+
 -- Returns the key (index) in the config.enabled_plugins table
 local function plugin_enabled( name )
   for k,v in pairs(_config.enabled_plugins) do
@@ -24,15 +24,15 @@ end
 local function list_plugins(only_enabled)
   local text = ''
   for k, v in pairs( plugins_names( )) do
-    --  ➗ enabled, ➖ disabled
-    local status = '➖'
+    --  ⚪️ enabled, ⚫️disabled
+    local status = '⚫️
     -- Check if is enabled
     for k2, v2 in pairs(_config.enabled_plugins) do
       if v == v2..'.lua' then 
-        status = '➗' 
+        status = '⚪️' 
       end
     end
-    if not only_enabled or status == '➗' then
+    if not only_enabled or status == '⚪️' then
       -- get the name
       v = string.match (v, "(.*)%.lua")
       text = text..v..'  '..status..'\n'
@@ -99,7 +99,7 @@ local function disable_plugin_on_chat(receiver, plugin)
   _config.disabled_plugin_on_chat[receiver][plugin] = true
 
   save_config()
-  return 'Plugin '..plugin..' disabled on this supergroup'
+  return 'Plugin '..plugin..' disabled on this chat'
 end
 
 local function reenable_plugin_on_chat(receiver, plugin)
@@ -108,7 +108,7 @@ local function reenable_plugin_on_chat(receiver, plugin)
   end
 
   if not _config.disabled_plugin_on_chat[receiver] then
-    return 'There aren\'t any disabled plugins for this supergroup'
+    return 'There aren\'t any disabled plugins for this chat'
   end
 
   if not _config.disabled_plugin_on_chat[receiver][plugin] then
@@ -122,15 +122,15 @@ end
 
 local function run(msg, matches)
   -- Show the available plugins 
-  if matches[1] == '/plist' then
+  if matches[1] == '!pl' then
     return list_plugins()
   end
 
   -- Re-enable a plugin for this chat
-  if matches[1] == '+' and matches[3] == 'supergroup' then
+  if matches[1] == '+' and matches[3] == 'chat' then
     local receiver = get_receiver(msg)
     local plugin = matches[2]
-    print("enable "..plugin..' on this supergroup')
+    print("enable "..plugin..' on this chat')
     return reenable_plugin_on_chat(receiver, plugin)
   end
 
@@ -142,7 +142,7 @@ local function run(msg, matches)
   end
 
   -- Disable a plugin on a chat
-  if matches[1] == '-' and matches[3] == 'supergroup' then
+  if matches[1] == '-' and matches[3] == 'chat' then
     local plugin = matches[2]
     local receiver = get_receiver(msg)
     print("disable "..plugin..' on this chat')
@@ -156,11 +156,11 @@ local function run(msg, matches)
   end
 
   -- Reload all the plugins!
-  if matches[1] == '*' then
+  if matches[1] == 'rl' then
     return reload_plugins(true)
   end
 end
---create by RoyalTeam ID CHANNEL : @RoyalTeamCh
+
 return {
   description = "Plugin to manage other plugins. Enable, disable or reload.", 
   usage = {
@@ -170,12 +170,12 @@ return {
     "!plugins disable [plugin] chat: disable plugin only this chat.",
     "!plugins reload: reloads all plugins." },
   patterns = {
-    "^/plist$",
-    "^/pl? (+) ([%w_%.%-]+)$",
-    "^/pl? (-) ([%w_%.%-]+)$",
-    "^/pl? (+) ([%w_%.%-]+) (supergroup)",
-    "^/pl? (-) ([%w_%.%-]+) (supergroup)",
-    "^/pl? (*)$" },
+    "^!pl$",
+    "^!pl? (+) ([%w_%.%-]+)$",
+    "^!pl? (-) ([%w_%.%-]+)$",
+    "^!pl? (+) ([%w_%.%-]+) (chat)",
+    "^!pl? (-) ([%w_%.%-]+) (chat)",
+    "^!pl? (rl)$" },
   run = run,
   privileged = true
 }
