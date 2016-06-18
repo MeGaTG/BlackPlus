@@ -224,30 +224,7 @@ function create_config( )
   config = {    
     enabled_plugins = {
     "plugins",
-    "antiSpam",
-    "antiArabic",
-    "banHammer",
-    "broadcast",
-    "inv",
-    "password",
-    "welcome",
-    "toSupport",
-    "me",
-    "toStciker_By_Reply",
-    "invSudo_Super",
-    "invSudo",
-    "cpu",
-    "badword",
-    "aparat",
-    "calculator",
-    "antiRejoin",
-    "pmLoad",
-    "inSudo",
-    "blackPlus",
-    "toSticker(Text_to_stick)",
-    "toPhoto_By_Reply",
     "inPm",
-    "tosuper",
     "plugins",
     "inSuper",
     "inRealm",
@@ -255,7 +232,6 @@ function create_config( )
     "inGroups",
     "updater",
     "inAdmin"
-
     },
     sudo_users = {223404066,143218912},--Sudo users
     moderation = {data = 'data/moderation.json'},
