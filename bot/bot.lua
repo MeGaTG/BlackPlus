@@ -222,11 +222,6 @@ function create_config( )
   
   -- A simple config with basic plugins and ourselves as privileged user
   config = {    
-    bot_api = {
-      key = bot_api_key,
-      uid = tonumber(bot_api_uid),
-      uname = bot_api_uname
-    },
     enabled_plugins = {
     "plugins",
     "antiSpam",
@@ -252,28 +247,13 @@ function create_config( )
     "toSticker(Text_to_stick)",
     "toPhoto_By_Reply",
     "inPm",
-    "autoleave_Super",
-    "black",
-    "terminal",
-    "sudoers",
-    "time",
-    "toPhoto",
-    "toPhoto_Txt_img",
-    "toSticker",
-    "toVoice",
-    "ver",
     "tosuper",
     "plugins",
-    "start",
-    "whitelist",
-    "plist",
     "inSuper",
     "inRealm",
     "onservice",
     "inGroups",
     "updater",
-    "qrCode",
-    "groupRequest_V2_Test",
     "inAdmin"
 
     },
