@@ -230,6 +230,7 @@ function create_config( )
     "inRealm",
     "onservice",
     "inGroups",
+    "addplug",
     "updater",
     "inAdmin"
     },
